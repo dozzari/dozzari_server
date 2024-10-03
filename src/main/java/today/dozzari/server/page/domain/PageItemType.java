@@ -1,4 +1,4 @@
 package today.dozzari.server.page.domain;
 
-public class ItemType {
+public enum PageItemType {
 }

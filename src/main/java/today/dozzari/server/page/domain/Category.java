@@ -8,6 +8,6 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
 public record Category(
         CategoryType categoryType,
-        List<Item> items
+        List<PageItem> items
 ) {
 }

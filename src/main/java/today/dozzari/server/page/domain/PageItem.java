@@ -1,9 +1,9 @@
 package today.dozzari.server.page.domain;
 
-public record Item(
+public record PageItem(
         Integer index,
         String name,
         Integer price,
-        ItemType itemType
+        PageItemType itemType
 ) {
 }

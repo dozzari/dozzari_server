@@ -14,16 +14,18 @@ public class User {
     @Id
     private String id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @Column(name = "gender")
+    @Column(name = "gender", nullable = false)
     private String gender;
 
-    @OneToMany(mappedBy = "orders")
-    @JoinColumn(name = "order_id")
+    @Column(name = "imageUrl")
+    private String imageUrl;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 }

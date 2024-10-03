@@ -2,9 +2,12 @@ package today.dozzari.server.order.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import today.dozzari.server.order.domain.OrderStatus;
 import today.dozzari.server.user.entity.User;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -20,18 +23,13 @@ public class Order {
     private LocalDateTime endAt;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @ManyToOne
-    @JoinColumn(name ="user_id")
-    private User userId;
-}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-enum OrderStatus {
-    PENDING,
-    ACCEPTED,
-    REJECTED,
-    USING,
-    DONE,
-    CANCELED,
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private List<OrderItems> orderItems = new ArrayList<>();
 }
