@@ -70,9 +70,8 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(request ->
-                                request
-//                                .requestMatchers(SecurityConstant.NEED_AUTHENTICATION.toArray(String[]::new)).authenticated()
-                                        .anyRequest().permitAll()
+                        request
+                                .anyRequest().permitAll()
                 );
 
         http
