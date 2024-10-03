@@ -17,7 +17,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import today.dozzari.server.global.security.SecurityConstant;
 import today.dozzari.server.global.security.filter.GlobalLoggerFilter;
 import today.dozzari.server.global.security.filter.JwtAuthenticationFilter;
 import today.dozzari.server.global.security.filter.JwtExceptionFilter;
@@ -71,8 +70,9 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers(SecurityConstant.NEED_AUTHENTICATION.toArray(String[]::new)).authenticated()
-                                .anyRequest().permitAll()
+                                request
+//                                .requestMatchers(SecurityConstant.NEED_AUTHENTICATION.toArray(String[]::new)).authenticated()
+                                        .anyRequest().permitAll()
                 );
 
         http
