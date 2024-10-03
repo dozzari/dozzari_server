@@ -1,10 +1,11 @@
 package today.dozzari.server.user.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
+import today.dozzari.server.order.entity.Order;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -21,4 +22,8 @@ public class User {
 
     @Column(name = "gender")
     private String gender;
+
+    @OneToMany(mappedBy = "orders")
+    @JoinColumn(name = "order_id")
+    private List<Order> orders = new ArrayList<>();
 }
