@@ -7,10 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import today.dozzari.server.dozzari.dto.res.AvailableDozzariResponse;
 import today.dozzari.server.dozzari.service.DozzariService;
 import today.dozzari.server.util.DateTimeUtil;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -21,11 +23,11 @@ public class DozzariController {
     private final DozzariService dozzariService;
 
     @GetMapping("/dozzaris")
-    public ResponseEntity<?> getAvailableDozzaris(
+    public ResponseEntity<List<AvailableDozzariResponse>> getAvailableDozzaris(
             @RequestParam(value = "start") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime start,
             @RequestParam(value = "end") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime end
     ) {
-
+        var list = dozzariService.getAllAvailableDozzaris(start, end);
         return ResponseEntity.ok(null);
     }
 }
