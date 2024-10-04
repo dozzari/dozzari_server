@@ -11,11 +11,9 @@ import java.util.Collection;
 public class CustomUserDetail implements UserDetails {
 
     private final String userId;
-    private final String name;
 
     public CustomUserDetail(User user) {
         this.userId = user.getId();
-        this.name = user.getName();
     }
 
     @Override
@@ -34,6 +32,6 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return null;
     }
 }
