@@ -9,7 +9,6 @@ import today.dozzari.server.order.dto.req.OrderRequest;
 import today.dozzari.server.order.dto.res.OrderResponse;
 import today.dozzari.server.order.entity.Order;
 import today.dozzari.server.order.entity.OrderItems;
-import today.dozzari.server.order.orderrepository.OrderItemsRepository;
 import today.dozzari.server.order.orderrepository.OrderRepository;
 import today.dozzari.server.user.entity.User;
 import today.dozzari.server.user.repository.UserRepository;
@@ -26,7 +25,6 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
-    private final OrderItemsRepository orderItemsRepository;
 
     public List<OrderResponse> showOrder(String userId, LocalDateTime start, LocalDateTime end) {
         User user = userRepository.findById(userId)
@@ -128,5 +126,4 @@ public class OrderService {
 
         return orderId.toString();
     }
-
 }
