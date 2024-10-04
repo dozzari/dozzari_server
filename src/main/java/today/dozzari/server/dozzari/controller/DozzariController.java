@@ -27,7 +27,7 @@ public class DozzariController {
             @RequestParam(value = "start") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime start,
             @RequestParam(value = "end") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime end
     ) {
-        var list = dozzariService.getAllAvailableDozzaris(start, end);
-        return ResponseEntity.ok(null);
+        var responses = dozzariService.getAllAvailableDozzaris(start, end);
+        return ResponseEntity.ok(responses);
     }
 }
