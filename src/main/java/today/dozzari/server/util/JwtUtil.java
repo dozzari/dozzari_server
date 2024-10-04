@@ -62,14 +62,14 @@ public class JwtUtil {
         }
     }
 
-    public JwtResponse issueToken(Long userId) {
+    public JwtResponse issueToken(String userId) {
         String accessToken = generateToken(userId, accessTokenExpirePeriod);
         String refreshToken = generateToken(userId, refreshTokenExpirePeriod);
 
         return JwtResponse.of(accessToken, refreshToken);
     }
 
-    public String generateToken(Long userId, Long expirePeriod) {
+    public String generateToken(String userId, Long expirePeriod) {
         return Jwts.builder()
                 .claim(JwtUtil.USER_ID, userId)
                 .issuedAt(new Date(System.currentTimeMillis()))
