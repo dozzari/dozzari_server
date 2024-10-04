@@ -3,6 +3,7 @@ package today.dozzari.server.order.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import today.dozzari.server.dozzari.entity.Dozzari;
+import today.dozzari.server.order.domain.OrderPickUpLocation;
 import today.dozzari.server.order.domain.OrderStatus;
 import today.dozzari.server.user.entity.User;
 
@@ -26,6 +27,10 @@ public class Order {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    @Column(name = "location")
+    @Enumerated(EnumType.STRING)
+    private OrderPickUpLocation location;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
