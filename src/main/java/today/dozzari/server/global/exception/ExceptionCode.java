@@ -19,6 +19,8 @@ public enum ExceptionCode {
     MALFORMED_TOKEN(400_005, HttpStatus.BAD_REQUEST, "잘못된 토큰입니다."),
     UNKNOWN_TOKEN(400_006, HttpStatus.BAD_REQUEST, "알 수 없는 토큰입니다."),
     ILLEGAL_DATE(400_007, HttpStatus.BAD_REQUEST, "잘못된 날짜입니다."),
+    MISSING_REQUEST_PARAMETER(400_008, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
+    HTTP_MEDIA_TYPE_NOT_SUPPORTED(400_009, HttpStatus.BAD_REQUEST, "지원하지 않는 미디어타입입니다."),
 
     // 401 Unauthorized
 
