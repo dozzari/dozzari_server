@@ -3,6 +3,7 @@ package today.dozzari.server.dozzari.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import today.dozzari.server.common.entity.Item;
+import today.dozzari.server.order.entity.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,4 +29,8 @@ public class Dozzari {
                 .reduce((a, b) -> a + ", " + b)
                 .orElse("");
     }
+
+    @OneToMany(mappedBy = "dozzari", fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
+
 }

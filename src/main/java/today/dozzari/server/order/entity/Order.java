@@ -2,6 +2,7 @@ package today.dozzari.server.order.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import today.dozzari.server.dozzari.entity.Dozzari;
 import today.dozzari.server.order.domain.OrderStatus;
 import today.dozzari.server.user.entity.User;
 
@@ -32,4 +33,8 @@ public class Order {
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderItems> orderItems = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dozzari_id")
+    private Dozzari dozzari;
 }
