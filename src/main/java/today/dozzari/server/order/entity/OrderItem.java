@@ -7,7 +7,7 @@ import today.dozzari.server.common.entity.Item;
 @Entity
 @Table(name = "order_items")
 @Getter
-public class OrderItems {
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

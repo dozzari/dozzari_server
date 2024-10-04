@@ -8,7 +8,7 @@ import today.dozzari.server.global.exception.ExceptionCode;
 import today.dozzari.server.order.dto.req.OrderRequest;
 import today.dozzari.server.order.dto.res.OrderResponse;
 import today.dozzari.server.order.entity.Order;
-import today.dozzari.server.order.entity.OrderItems;
+import today.dozzari.server.order.entity.OrderItem;
 import today.dozzari.server.order.orderrepository.OrderRepository;
 import today.dozzari.server.user.entity.User;
 import today.dozzari.server.user.repository.UserRepository;
@@ -26,6 +26,7 @@ public class OrderService {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
 
+    @Transactional
     public List<OrderResponse> showOrder(String userId, LocalDateTime start, LocalDateTime end) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BusinessException(ExceptionCode.NOT_FOUND_USER));
@@ -37,7 +38,7 @@ public class OrderService {
                             .picnicSetName(order.getDozzari().getName())
                             .startAt(order.getStartAt())
                             .endAt(order.getEndAt())
-                            .items(order.getOrderItems().stream().map(OrderItems::getItem).toList())
+                            .items(order.getOrderItems().stream().map(OrderItem::getItem).toList())
                             .price(
                                     ((order.getEndAt().getHour() - order.getStartAt().getHour() - 2) * 3000) + 5000
                             )
@@ -51,7 +52,7 @@ public class OrderService {
                         .picnicSetName(order.getDozzari().getName())
                         .startAt(order.getStartAt())
                         .endAt(order.getEndAt())
-                        .items(order.getOrderItems().stream().map(OrderItems::getItem).toList())
+                        .items(order.getOrderItems().stream().map(OrderItem::getItem).toList())
                         .price(
                                 ((order.getEndAt().getHour() - order.getStartAt().getHour() - 2) * 3000) + 5000
                         )
@@ -60,6 +61,7 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public OrderResponse showOrderByOrderId(String userId, String orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new BusinessException(ExceptionCode.NOT_FOUND_ORDER));
@@ -69,7 +71,7 @@ public class OrderService {
                 .picnicSetName(order.getDozzari().getName())
                 .startAt(order.getStartAt())
                 .endAt(order.getEndAt())
-                .items(order.getOrderItems().stream().map(OrderItems::getItem).toList())
+                .items(order.getOrderItems().stream().map(OrderItem::getItem).toList())
                 .price(
                         ((order.getEndAt().getHour() - order.getStartAt().getHour() - 2) * 3000) + 5000
                 )
