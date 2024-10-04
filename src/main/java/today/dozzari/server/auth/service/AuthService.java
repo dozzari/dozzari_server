@@ -1,9 +1,11 @@
 package today.dozzari.server.auth.service;
 
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import today.dozzari.server.auth.domain.Provider;
+import today.dozzari.server.auth.dto.req.ReissueRequest;
 import today.dozzari.server.auth.dto.req.SignInRequest;
 import today.dozzari.server.auth.dto.res.JwtResponse;
 import today.dozzari.server.user.entity.User;
@@ -36,6 +38,13 @@ public class AuthService {
         }
 
         return jwtUtil.issueToken(user.getId());
+    }
+
+    public JwtResponse reissue(ReissueRequest request) {
+        Claims claims = jwtUtil.parse(request.refreshToken());
+        String userId = claims.get(JwtUtil.USER_ID, String.class);
+
+        return jwtUtil.issueToken(userId);
     }
 
     private String generateUserId() {
