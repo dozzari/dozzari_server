@@ -18,6 +18,7 @@ public enum ExceptionCode {
     UNSUPPORTED_TOKEN(400_004, HttpStatus.BAD_REQUEST, "지원하지 않는 토큰입니다."),
     MALFORMED_TOKEN(400_005, HttpStatus.BAD_REQUEST, "잘못된 토큰입니다."),
     UNKNOWN_TOKEN(400_006, HttpStatus.BAD_REQUEST, "알 수 없는 토큰입니다."),
+    ILLEGAL_DATE(400_007, HttpStatus.BAD_REQUEST, "잘못된 날짜입니다."),
 
     // 401 Unauthorized
 
