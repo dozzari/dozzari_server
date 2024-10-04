@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import today.dozzari.server.dozzari.dto.res.AvailableDozzariResponse;
 import today.dozzari.server.dozzari.entity.AvailableTime;
 import today.dozzari.server.dozzari.entity.Dozzari;
-import today.dozzari.server.dozzari.repository.DozzariItemRepository;
 import today.dozzari.server.dozzari.repository.DozzariRepository;
 import today.dozzari.server.global.exception.BusinessException;
 import today.dozzari.server.global.exception.ExceptionCode;
@@ -22,7 +21,6 @@ public class DozzariService {
 
     private final AvailableDozzariService availableDozzariService;
     private final DozzariRepository dozzariRepository;
-    private final DozzariItemRepository dozzariItemRepository;
 
     @Transactional(readOnly = true)
     public List<AvailableDozzariResponse> getAllAvailableDozzaris(LocalDateTime start, LocalDateTime end) {
