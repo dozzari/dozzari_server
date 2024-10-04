@@ -1,7 +1,9 @@
 package today.dozzari.server.order.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import today.dozzari.server.dozzari.entity.Dozzari;
 import today.dozzari.server.order.domain.OrderPickUpLocation;
 import today.dozzari.server.order.domain.OrderStatus;
@@ -14,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Getter
+@NoArgsConstructor
 public class Order {
     @Id
     private String id;
@@ -42,4 +45,9 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dozzari_id")
     private Dozzari dozzari;
+
+    @Builder
+    public Order(String id, String userId, LocalDateTime startAt, LocalDateTime endAt, OrderPickUpLocation location, Dozzari dozzari) {
+        status = OrderStatus.ACCEPTED;
+    }
 }
