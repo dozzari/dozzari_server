@@ -1,6 +1,7 @@
 package today.dozzari.server.order.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
     @Id
     private String id;
@@ -46,8 +47,24 @@ public class Order {
     @JoinColumn(name = "dozzari_id")
     private Dozzari dozzari;
 
+    /* --------------------------------- */
+    /* ----------- Functions ----------- */
+    /* --------------------------------- */
     @Builder
-    public Order(String id, String userId, LocalDateTime startAt, LocalDateTime endAt, OrderPickUpLocation location, Dozzari dozzari) {
-        status = OrderStatus.ACCEPTED;
+    public Order(
+            String id,
+            User user,
+            LocalDateTime startAt,
+            LocalDateTime endAt,
+            OrderPickUpLocation location,
+            Dozzari dozzari
+    ) {
+        this.id = id;
+        this.user = user;
+        this.startAt = startAt;
+        this.endAt = endAt;
+        this.location = location;
+        this.dozzari = dozzari;
+        status = OrderStatus.PENDING;
     }
 }

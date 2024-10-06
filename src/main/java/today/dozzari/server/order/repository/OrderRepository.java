@@ -1,4 +1,4 @@
-package today.dozzari.server.order.orderrepository;
+package today.dozzari.server.order.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
