@@ -34,10 +34,12 @@ public class Item {
     public Item(
             Long id,
             String name,
-            Integer stock
+            Integer stock,
+            Integer price
     ) {
         this.id = id;
         this.name = name;
         this.stock = stock;
+        this.price = price;
     }
 }
