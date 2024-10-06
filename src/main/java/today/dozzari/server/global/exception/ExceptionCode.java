@@ -34,6 +34,7 @@ public enum ExceptionCode {
     // 500 Internal Server Error
     INTERNAL_SERVER_ERROR(500_000, HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 요청 중 오류가 발생했습니다."),
     FAILED_TO_CREATE_ORDER(500_001, HttpStatus.INTERNAL_SERVER_ERROR, "주문 생성 중 오류가 발생했습니다."),
+    FAILED_TO_CREATE_ID(500_002, HttpStatus.INTERNAL_SERVER_ERROR, "ID 생성 중 오류가 발생했습니다."),
 
     // 502 Bad Gateway
     EXTERNAL_SERVER_ERROR(502_000, HttpStatus.BAD_GATEWAY, "서버 외부 요청 중 오류가 발생했습니다."),

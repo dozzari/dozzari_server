@@ -12,21 +12,20 @@ import today.dozzari.server.order.entity.OrderItem;
 import today.dozzari.server.order.repository.OrderRepository;
 import today.dozzari.server.user.entity.User;
 import today.dozzari.server.user.repository.UserRepository;
+import today.dozzari.server.util.StringUtil;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
+    private final StringUtil stringUtil;
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<OrderResponse> showOrder(String userId, LocalDateTime start, LocalDateTime end) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BusinessException(ExceptionCode.NOT_FOUND_USER));
@@ -85,7 +84,7 @@ public class OrderService {
                 .orElseThrow(() -> new BusinessException(ExceptionCode.NOT_FOUND_USER));
 
         orderRepository.save(Order.builder()
-                .id(generateOrderId())
+                .id(stringUtil.generateRandomId())
                 .user(user)
                 .startAt(request.startAt())
                 .endAt(request.endAt())
@@ -100,25 +99,5 @@ public class OrderService {
         Order order = orderRepository.findByIdAndUserId(orderId, userId)
                 .orElseThrow(() -> new BusinessException(ExceptionCode.NOT_FOUND_ORDER));
         orderRepository.delete(order);
-    }
-
-    private String generateOrderId() {
-        String uuid = UUID.randomUUID().toString();
-        byte[] uuidBytes = uuid.getBytes();
-        byte[] userIdBytes;
-
-        try {
-            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-            userIdBytes = sha256.digest(uuidBytes);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Order Id 생성 중에 에러가 발생했습니다.");
-        }
-
-        StringBuilder orderId = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
-            orderId.append(String.format("%02x", userIdBytes[i]));
-        }
-
-        return orderId.toString();
     }
 }

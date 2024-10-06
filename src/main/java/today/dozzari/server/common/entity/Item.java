@@ -24,6 +24,9 @@ public class Item {
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
+    @Column(name = "price", nullable = false)
+    private Integer price;
+
     /* --------------------------------- */
     /* ----------- Functions ----------- */
     /* --------------------------------- */

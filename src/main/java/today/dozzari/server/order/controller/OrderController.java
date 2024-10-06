@@ -41,6 +41,7 @@ public class OrderController {
             @Parameter(hidden = true) @UserId String userId,
             @RequestBody OrderRequest request
     ) {
+        orderService.postOrder(userId, request);
         return ResponseEntity.created(URI.create("/api/orders/")).body(null);
     }
 
