@@ -11,17 +11,15 @@ import today.dozzari.server.auth.dto.res.JwtResponse;
 import today.dozzari.server.user.entity.User;
 import today.dozzari.server.user.repository.UserRepository;
 import today.dozzari.server.util.JwtUtil;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.UUID;
+import today.dozzari.server.util.StringUtil;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
+    private final StringUtil stringUtil;
+    private final UserRepository userRepository;
 
     @Transactional
     public JwtResponse signIn(SignInRequest request) {
@@ -31,7 +29,7 @@ public class AuthService {
         if (user == null) {
             // 회원가입
             user = userRepository.save(User.builder()
-                    .id(generateUserId())
+                    .id(stringUtil.generateRandomId())
                     .email(request.email())
                     .provider(Provider.fromName(request.provider()))
                     .build());
@@ -45,25 +43,5 @@ public class AuthService {
         String userId = claims.get(JwtUtil.USER_ID, String.class);
 
         return jwtUtil.issueToken(userId);
-    }
-
-    private String generateUserId() {
-        String uuid = UUID.randomUUID().toString();
-        byte[] uuidBytes = uuid.getBytes();
-        byte[] userIdBytes;
-
-        try {
-            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-            userIdBytes = sha256.digest(uuidBytes);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("User Id 생성 중에 에러가 발생했습니다.");
-        }
-
-        StringBuilder userId = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
-            userId.append(String.format("%02x", userIdBytes[i]));
-        }
-
-        return userId.toString();
     }
 }

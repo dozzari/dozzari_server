@@ -1,4 +1,4 @@
-package today.dozzari.server.order.ordercontroller;
+package today.dozzari.server.order.controller;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import today.dozzari.server.global.interceptor.annotation.UserId;
 import today.dozzari.server.order.dto.req.OrderRequest;
 import today.dozzari.server.order.dto.res.OrderResponse;
-import today.dozzari.server.order.orderservice.OrderService;
+import today.dozzari.server.order.service.OrderService;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,19 +37,20 @@ public class OrderController {
     }
 
     @PostMapping("/api/orders") //Request에서 OrderItem을 가져와야함.
-    public ResponseEntity<String> postOrder(
+    public ResponseEntity<?> postOrder(
             @Parameter(hidden = true) @UserId String userId,
             @RequestBody OrderRequest request
     ) {
-        return ResponseEntity.ok(orderService.postOrder(userId, request));
+        orderService.postOrder(userId, request);
+        return ResponseEntity.created(URI.create("/api/orders/")).body(null);
     }
 
     @DeleteMapping("/api/orders/{orderId}")
-    public ResponseEntity<String> deleteOrder(
+    public ResponseEntity<?> deleteOrder(
             @Parameter(hidden = true) @UserId String userId,
             @PathVariable String orderId
     ) {
         orderService.deleteOrder(userId, orderId);
-        return ResponseEntity.ok("주문을 삭제하였습니다.");
+        return ResponseEntity.ok(null);
     }
 }
