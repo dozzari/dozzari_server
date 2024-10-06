@@ -21,6 +21,8 @@ public enum ExceptionCode {
     ILLEGAL_DATE(400_007, HttpStatus.BAD_REQUEST, "잘못된 날짜입니다."),
     MISSING_REQUEST_PARAMETER(400_008, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
     HTTP_MEDIA_TYPE_NOT_SUPPORTED(400_009, HttpStatus.BAD_REQUEST, "지원하지 않는 미디어타입입니다."),
+    ILLEGAL_ORDER(400_010, HttpStatus.BAD_REQUEST, "잘못된 예약요청입니다."),
+    ILLEGAL_DELETE(400_011, HttpStatus.BAD_REQUEST, "잘못된 취소요청입니다."),
 
     // 401 Unauthorized
 

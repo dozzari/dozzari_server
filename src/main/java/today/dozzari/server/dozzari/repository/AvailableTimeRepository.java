@@ -14,4 +14,6 @@ public interface AvailableTimeRepository extends JpaRepository<AvailableTime, Lo
 
     List<AvailableTime> findAllByDateAndDozzariAndIsBookedAndTimeBetween(
             AvailableDate date, Dozzari dozzari, Boolean isBooked, LocalTime start, LocalTime end);
+
+    List<AvailableTime> findAllByDozzariAndTimeBetween(Dozzari dozzari, LocalTime start, LocalTime end);
 }

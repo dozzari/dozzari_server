@@ -46,4 +46,8 @@ public class AvailableTime {
         this.time = time;
         this.isBooked = false;
     }
+
+    public void changeBookStatus() {
+        this.isBooked = !this.isBooked;
+    }
 }
