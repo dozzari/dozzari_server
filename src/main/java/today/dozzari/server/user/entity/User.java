@@ -28,8 +28,15 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 
+    /* --------------------------------- */
+    /* ----------- Functions ----------- */
+    /* --------------------------------- */
     @Builder
-    public User(String id, String email, Provider provider) {
+    public User(
+            String id,
+            String email,
+            Provider provider
+    ) {
         this.id = id;
         this.email = email;
         this.provider = provider;
