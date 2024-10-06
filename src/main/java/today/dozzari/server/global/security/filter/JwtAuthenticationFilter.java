@@ -52,8 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(final HttpServletRequest request) throws ServletException {
-        return !(SecurityConstant.NEED_AUTHENTICATION.contains(request.getRequestURI())
-                || SecurityConstant.NEED_AUTHENTICATION.stream().anyMatch(pattern -> antPathMatcher.match(pattern, request.getRequestURI())));
+        return SecurityConstant.NEED_AUTHENTICATION.stream().noneMatch(pattern -> antPathMatcher.match(pattern, request.getRequestURI()));
     }
 
     private String getAuthorizationHeader(final HttpServletRequest request) {

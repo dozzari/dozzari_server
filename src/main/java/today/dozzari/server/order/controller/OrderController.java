@@ -22,8 +22,8 @@ public class OrderController {
     @GetMapping("/api/orders")
     public ResponseEntity<List<OrderResponse>> orderList(
             @Parameter(hidden = true) @UserId String userId,
-            @RequestParam(value = "start") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime start,
-            @RequestParam(value = "end") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime end) {
+            @RequestParam(value = "start", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime start,
+            @RequestParam(value = "end", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime end) {
         var response = orderService.showOrder(userId, start, end);
         return ResponseEntity.ok(response);
     }

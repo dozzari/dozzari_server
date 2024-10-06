@@ -35,7 +35,7 @@ public class JwtUtil {
     }
 
     public String extractToken(final String authorizationHeader) {
-        if (authorizationHeader == null || authorizationHeader.startsWith(JwtUtil.BEARER)) {
+        if (authorizationHeader == null || !authorizationHeader.startsWith(JwtUtil.BEARER)) {
             throw new TokenException(ExceptionCode.MISSING_TOKEN);
         }
 
