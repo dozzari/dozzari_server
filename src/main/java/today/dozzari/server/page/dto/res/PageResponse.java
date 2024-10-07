@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
 public record PageResponse(
-        Long dozzariId,
+        String dozzariId,
         String name,
         Integer price,
         List<Category> categories
