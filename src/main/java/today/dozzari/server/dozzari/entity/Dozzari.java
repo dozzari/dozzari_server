@@ -23,6 +23,9 @@ public class Dozzari {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "image_url", length = 100)
+    private String imageUrl;
+
     @OneToMany(mappedBy = "dozzari", fetch = FetchType.LAZY)
     private List<DozzariItem> dozzariItems = new ArrayList<>();
 
