@@ -21,6 +21,8 @@ public enum ExceptionCode {
     ILLEGAL_DATE(400_007, HttpStatus.BAD_REQUEST, "잘못된 날짜입니다."),
     MISSING_REQUEST_PARAMETER(400_008, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
     HTTP_MEDIA_TYPE_NOT_SUPPORTED(400_009, HttpStatus.BAD_REQUEST, "지원하지 않는 미디어타입입니다."),
+    ILLEGAL_ORDER(400_010, HttpStatus.BAD_REQUEST, "잘못된 예약요청입니다."),
+    ILLEGAL_DELETE(400_011, HttpStatus.BAD_REQUEST, "잘못된 취소요청입니다."),
 
     // 401 Unauthorized
 
@@ -30,6 +32,7 @@ public enum ExceptionCode {
     // 404 Not Found
     NOT_FOUND_USER(404_000, HttpStatus.NOT_FOUND, "유저를 찾을 수 없습니다."),
     NOT_FOUND_ORDER(404_001, HttpStatus.NOT_FOUND, "주문을 찾을 수 없습니다."),
+    NOT_FOUND_DOZZARI(404_002, HttpStatus.NOT_FOUND, "도짜리를 찾을 수 없습니다."),
 
     // 500 Internal Server Error
     INTERNAL_SERVER_ERROR(500_000, HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 요청 중 오류가 발생했습니다."),
