@@ -38,7 +38,7 @@ public class DozzariService {
             if (isContinuousTime(times, start.toLocalTime(), end.toLocalTime())) {
                 responses.add(AvailableDozzariResponse.builder()
                         .dozzariId(dozzari.getId())
-                        .dozzariImageUrl(null)
+                        .dozzariImageUrl(dozzari.getImageUrl())
                         .setInfo(dozzari.getSetInfo())
                         .availableTimes(formatTimeRanges(times))
                         .build());
