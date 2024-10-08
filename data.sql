@@ -12,7 +12,7 @@ INSERT INTO items(id, name, stock, price) VALUES (200, '종이컵', 300, 100);
 INSERT INTO items(id, name, stock, price) VALUES (201, '일회용 접시', 300, 140);
 INSERT INTO items(id, name, stock, price) VALUES (202, '일회용 젓가락', 300, 50);
 INSERT INTO items(id, name, stock, price) VALUES (203, '물티슈 (0매입)', 300, 1000);
-INSERT INTO items(id, name, stock, price) VALUES (204, '위생 장갑', 300, 100);
+INSERT INTO items(id, name, stock, price) VALUES (204, '위생 장갑', 300, 10 0);
 INSERT INTO items(id, name, stock, price) VALUES (205, '티슈', 300, 500);
 
 
