@@ -46,9 +46,11 @@ public class Dozzari {
     @Builder
     public Dozzari(
             String id,
-            String name
+            String name,
+            String imageUrl
     ) {
         this.id = id;
         this.name = name;
+        this.imageUrl = imageUrl;
     }
 }

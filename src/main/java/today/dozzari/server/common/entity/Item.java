@@ -46,4 +46,8 @@ public class Item {
     public void addStock(Integer add) {
         this.stock += add;
     }
+
+    public void minusStock(Integer minus) {
+        this.stock -= minus;
+    }
 }

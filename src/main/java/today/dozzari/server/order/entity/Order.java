@@ -47,6 +47,9 @@ public class Order {
     @JoinColumn(name = "dozzari_id")
     private Dozzari dozzari;
 
+    @Column(name = "price")
+    private Integer price;
+
     /* --------------------------------- */
     /* ----------- Functions ----------- */
     /* --------------------------------- */
@@ -57,7 +60,8 @@ public class Order {
             LocalDateTime startAt,
             LocalDateTime endAt,
             OrderPickUpLocation location,
-            Dozzari dozzari
+            Dozzari dozzari,
+            Integer price
     ) {
         this.id = id;
         this.user = user;
@@ -66,5 +70,6 @@ public class Order {
         this.location = location;
         this.dozzari = dozzari;
         status = OrderStatus.PENDING;
+        this.price = price;
     }
 }

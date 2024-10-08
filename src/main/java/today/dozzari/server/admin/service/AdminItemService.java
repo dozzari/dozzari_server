@@ -20,18 +20,25 @@ public class AdminItemService {
     private final ItemRepository itemRepository;
 
     @Transactional
-    public void postItem(AdminItemRequest request) {
+    public AdminItemResponse postItem(AdminItemRequest request) {
         // id에 중복된 값이 있는지 확인
         if (itemRepository.findById(request.id()).isPresent()) {
             throw new BusinessException(ExceptionCode.ILLEGAL_POST_ITEM);
         }
-
-        itemRepository.save(Item.builder()
+        // DB에 새로운 item 저장
+        Item item = itemRepository.save(Item.builder()
                 .id(request.id())
                 .name(request.name())
                 .stock(request.stock())
                 .price(request.price())
                 .build());
+
+        return AdminItemResponse.builder()
+                .id(item.getId())
+                .name(item.getName())
+                .stock(item.getStock())
+                .price(item.getPrice())
+                .build();
     }
 
     @Transactional(readOnly = true)

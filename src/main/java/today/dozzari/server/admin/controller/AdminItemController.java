@@ -16,10 +16,10 @@ public class AdminItemController {
     private final AdminItemService adminItemService;
 
     @PostMapping("/admin/item") // 아이템 등록하기 -> Create
-    public ResponseEntity<?> postItem(@RequestBody AdminItemRequest request) {
-        adminItemService.postItem(request);
+    public ResponseEntity<AdminItemResponse> postItem(@RequestBody AdminItemRequest request) {
+        AdminItemResponse response = adminItemService.postItem(request);
 
-        return ResponseEntity.ok(request);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/admin/item") // 모든 아이템 가져오기 -> Read
