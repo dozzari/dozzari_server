@@ -49,14 +49,19 @@ public class AdminItemService {
     }
 
     @Transactional
-    public void updateItem(AdminItemUpdateRequest request) {
+    public AdminItemResponse updateItem(AdminItemUpdateRequest request) {
         // id 값을 기준으로 없는 아이템의 id를 보냈는지 확인
         Item targetItem = itemRepository.findById(request.id())
                 .orElseThrow(() -> new BusinessException(ExceptionCode.ILLEGAL_DELETE_ITEM));
         // 조회한 id 값을 기준으로 재고값 추가 ex. 원래 재고값이 5개 request 에 들어온 값이 5이면 총 10개의 재고로 수정
         targetItem.addStock(request.stock());
         itemRepository.save(targetItem);
-
+        return AdminItemResponse.builder()
+                .id(targetItem.getId())
+                .name(targetItem.getName())
+                .stock(targetItem.getStock())
+                .price(targetItem.getPrice())
+                .build();
     }
 
     @Transactional

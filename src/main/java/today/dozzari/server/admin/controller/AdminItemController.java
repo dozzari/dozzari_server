@@ -28,9 +28,9 @@ public class AdminItemController {
     }
 
     @PutMapping("/admin/item") // 아이템의 재고 값 수정하기 -> Update
-    public ResponseEntity<?> updateItem(@RequestBody AdminItemUpdateRequest request) {
-        adminItemService.updateItem(request);
-        return ResponseEntity.ok(null);
+    public ResponseEntity<AdminItemResponse> updateItem(@RequestBody AdminItemUpdateRequest request) {
+        AdminItemResponse response = adminItemService.updateItem(request);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/admin/item/{id}") // 아이템 id 값으로 삭제하기 -> Delete

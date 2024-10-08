@@ -44,6 +44,6 @@ public class Item {
     }
 
     public void addStock(Integer add) {
-        this.price += add;
+        this.stock += add;
     }
 }
