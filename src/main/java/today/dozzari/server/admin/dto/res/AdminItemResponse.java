@@ -1,4 +1,4 @@
-package today.dozzari.server.order.dto.req;
+package today.dozzari.server.admin.dto.res;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -6,10 +6,10 @@ import lombok.Builder;
 
 @Builder
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
-public record OrderItemsRequest(
+public record AdminItemResponse(
         Long id,
         String name,
-        Integer quantity
+        Integer stock,
+        Integer price
 ) {
-
 }

@@ -8,6 +8,7 @@ import lombok.Builder;
 import today.dozzari.server.order.domain.OrderPickUpLocation;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
@@ -24,7 +25,9 @@ public record OrderRequest(
         LocalDateTime endAt,
 
         @Schema(description = "수령 및 반납 위치")
-        OrderPickUpLocation location
-//        List<OrderItemsRequest> orderItems //아이템들
+        OrderPickUpLocation location,
+
+        @Schema(description = "추가 물품")
+        List<OrderItemsRequest> orderItems //아이템들
 ) {
 }

@@ -42,4 +42,12 @@ public class Item {
         this.stock = stock;
         this.price = price;
     }
+
+    public void addStock(Integer add) {
+        this.stock += add;
+    }
+
+    public void minusStock(Integer minus) {
+        this.stock -= minus;
+    }
 }

@@ -36,7 +36,7 @@ public class OrderController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/api/orders") //Request에서 OrderItem을 가져와야함.
+    @PostMapping("/api/orders") //Request 에서 OrderItem 을 가져와야함.
     public ResponseEntity<?> postOrder(
             @Parameter(hidden = true) @UserId String userId,
             @RequestBody OrderRequest request

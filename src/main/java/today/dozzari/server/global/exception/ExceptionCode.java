@@ -23,7 +23,11 @@ public enum ExceptionCode {
     HTTP_MEDIA_TYPE_NOT_SUPPORTED(400_009, HttpStatus.BAD_REQUEST, "지원하지 않는 미디어타입입니다."),
     ILLEGAL_ORDER(400_010, HttpStatus.BAD_REQUEST, "잘못된 예약요청입니다."),
     ILLEGAL_DELETE(400_011, HttpStatus.BAD_REQUEST, "잘못된 취소요청입니다."),
-
+    ILLEGAL_DELETE_ITEM(400_012, HttpStatus.BAD_REQUEST, "없는 아이템입니다."),
+    ILLEGAL_POST_ITEM(400_013, HttpStatus.BAD_REQUEST, "중복된 아이템 ID 입니다."),
+    ILLEGAL_POST_DOZZARI(400_014, HttpStatus.BAD_REQUEST, "중복된 도짜리 ID 입니다."),
+    ILLEGAL_DELETE_DOZZARI(400_015, HttpStatus.BAD_REQUEST, "없는 도짜리입니다."),
+    NO_STOCK(400_016, HttpStatus.BAD_REQUEST, "재고가 불충분합니다."),
     // 401 Unauthorized
 
     // 403 Forbidden
